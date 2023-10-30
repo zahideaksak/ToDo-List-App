@@ -2,10 +2,6 @@ const addTaskButton = document.querySelector("#addTaskBtn");
 const taskInput = document.querySelector("#taskInput");
 const taskList = document.querySelector("#task-container");
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadTasks();
-});
-
 const toggleComplete = (event) => {
   if (event.target.tagName === "LI") {
     event.target.classList.toggle("checked");
@@ -19,29 +15,37 @@ const removeItem = (event) => {
 
 const renderTaskItem = (taskText) => {
   const taskItem = document.createElement("li");
-  taskItem.innerText = taskText;
-  taskList.appendChild(taskItem);
-  taskList.addEventListener("click", toggleComplete);
+  taskItem.appendChild(document.createTextNode(taskText));
 
   const deleteButton = document.createElement("span");
   deleteButton.innerText = "\u00d7";
   deleteButton.addEventListener("click", removeItem);
+
   taskItem.appendChild(deleteButton);
+  taskList.appendChild(taskItem);
+
+  taskList.addEventListener("click", toggleComplete);
 
   taskInput.value = "";
   taskInput.focus();
-
-  updateLocalStorage();
 };
 
 const addTask = () => {
   const taskText = taskInput.value.trim();
   if (taskText !== "") {
     renderTaskItem(taskText);
+    saveTaskToLocalStorage(taskText);
     taskInput.value = "";
   }
 };
 addTaskButton.addEventListener("click", addTask);
+
+// Function for saving task to localStorage
+function saveTaskToLocalStorage(taskText) {
+  let tasks = getTasksFromLocalStorage();
+  tasks.push(taskText);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 // Function to fetch tasks from localStorage
 const getTasksFromLocalStorage = () => {
@@ -61,6 +65,7 @@ const loadTasks = () => {
     renderTaskItem(taskText);
   });
 };
+document.addEventListener("DOMContentLoaded", loadTasks);
 
 // localStorage update function
 const updateLocalStorage = () => {
