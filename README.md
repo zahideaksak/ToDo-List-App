@@ -22,14 +22,14 @@ To use the application, follow these steps:
    ```
 2. Navigate to the project folder:
 
-   ```cd to-do-list-app
-
+   ```
+   cd to-do-list-app
    ```
 
 3. Open the HTML file in a web browser:
-   ```
+
    Open the index.html file in a web browser.
-   ```
+
 4. To add a new task, type your task in the text box and click the "Add" button.
 5. To mark a task as complete, click on the task.
 6. To delete a task, click on the "x" icon next to the task.
