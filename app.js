@@ -2,6 +2,8 @@ const addTaskButton = document.querySelector("#addTaskBtn");
 const taskInput = document.querySelector("#taskInput");
 const taskList = document.querySelector("#task-container");
 
+const allEvents = () => {};
+
 const toggleComplete = (event) => {
   if (event.target.tagName === "LI") {
     event.target.classList.toggle("checked");
@@ -70,6 +72,7 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 // localStorage update function
 const updateLocalStorage = () => {
   const taskItems = Array.from(taskList.children);
+  console.log(taskItems);
   const tasks = taskItems.map((item) => item.textContent);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
