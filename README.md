@@ -22,7 +22,7 @@ To use the application, follow these steps:
    ```
 2. Navigate to the project folder:
 
-   ```
+   ```bash
    cd to-do-list-app
    ```
 
